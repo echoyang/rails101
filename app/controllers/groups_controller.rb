@@ -6,6 +6,13 @@ class Account::GroupsController < ApplicationController
   end
 end
 
+class Account::PostsController < ApplicationController
+  before_action :authenticate_user!
+  def index
+    @posts = current_user.posts
+  end
+end
+
 class GroupsController < ApplicationController
 
   before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy]
